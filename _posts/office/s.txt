@@ -1,0 +1,2 @@
+alias office=libreoffice
+alias office=libreoffice
