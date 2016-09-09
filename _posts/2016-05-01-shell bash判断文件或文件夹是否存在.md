@@ -1,11 +1,17 @@
-#shell判断文件夹是否存在
+---
+title: Bash 判断文件或文件夹是否存在
+layout: post
+categories: Ubuntu
+tag: [Ubuntu,Liunx,Shell]
+---
 
-#如果文件夹不存在，创建文件夹
+``` bash
+# 如果文件夹不存在，创建文件夹
 if [ ! -d "/myfolder" ]; then
   mkdir /myfolder
 fi
 
-#shell判断文件,目录是否存在或者具有权限
+# shell判断文件,目录是否存在或者具有权限
 
 
 folder="/var/www/"
@@ -38,3 +44,4 @@ if [ "$var1" = "$var2" ]; then
 else
   echo '$var1 not eq $var2'
 fi
+```

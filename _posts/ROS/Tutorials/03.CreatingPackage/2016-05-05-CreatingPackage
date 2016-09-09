@@ -1,0 +1,224 @@
+# CreatingPackage
+http://wiki.ros.org/ROS/Tutorials/CreatingPackage
+
+Description: This tutorial covers using roscreate-pkg or catkin to create a new package, and rospack to list package dependencies.
+
+描述： 使用 `roscreate-pkg catkin` 新建 `package` ； 用 `rospack` 列出包依赖
+
+# 要求
+
+The package must contain a catkin compliant `package.xml` file. That `package.xml` file provides meta information about the package.The package must contain a `CMakeLists.txt` which uses catkin. Catkin metapackages must have a boilerplate CMakeLists.txt file.
+
+There can be no more than one package in each folder.This means no nested packages nor multiple packages sharing the same directory.The simplest possible package might look like this:
+
+> Packages in a catkin Workspace
+
+A trivial workspace might look like this
+``` directory
+workspace_folder/        -- WORKSPACE
+  src/                   -- SOURCE SPACE
+    CMakeLists.txt       -- 'Toplevel' CMake file, provided by catkin
+    package_1/
+      CMakeLists.txt     -- CMakeLists.txt file for package_1
+      package.xml        -- Package manifest for package_1
+    ...
+    package_n/
+      CMakeLists.txt     -- CMakeLists.txt file for package_n
+      package.xml        -- Package manifest for package_n
+```
+
+# Creating a catkin Package
+
+
+This tutorial will demonstrate how to use the `catkin_create_pkg` script to create a new catkin package, and what you can do with it after it has been created.
+
+``` bash
+# You should have created this in the Creating a Workspace Tutorial
+cd ~/catkin_ws/src
+# 创建包 beginner_tutorials 依赖于包 std_msgs rospy roscpp
+catkin_create_pkg beginner_tutorials std_msgs rospy roscpp
+```
+
+This will create a `beginner_tutorials` folder which contains a `package.xml` and a `CMakeLists.txt`, which have been partially filled out with the information you gave `catkin_create_pkg`.
+
+`catkin_create_pkg` requires that you give it a package_name and optionally a list of dependencies on which that package depends:
+
+``` bash
+# This is an example, do not try to run this
+# catkin_create_pkg <package_name> [depend1] [depend2] [depend3]
+## Building a catkin workspace and sourcing the setup file
+```
+
+Now you need to build the packages in the catkin workspace:
+
+```bash
+$ cd ~/catkin_ws
+$ catkin_make
+```
+
+After the workspace has been built it has created a similar structure in the devel subfolder as you usually find under `/opt/ros/$ROSDISTRO_NAME`.
+
+To add the workspace to your ROS environment you need to source the generated setup file:
+
+```bash
+$ . ~/catkin_ws/devel/setup.bash
+```
+
+# package dependencies 包依赖
+
+直接依赖：
+```bash
+$ rospack depends1 beginner_tutorials # 输出如下
+std_msgs
+rospy
+roscpp
+```
+间接依赖：
+```bash
+$ rospack depends beginner_tutorials # 输出如下
+cpp_common
+rostime
+roscpp_traits
+roscpp_serialization
+genmsg
+genpy
+message_runtime
+rosconsole
+std_msgs
+rosgraph_msgs
+xmlrpcpp
+roscpp
+rosgraph
+catkin
+rospack
+roslib
+rospy
+```
+
+# Customizing Your Package 定制
+
+
+## Customizing the package.xml
+
+
+### description tag
+
+
+First update the description tag:
+
+Toggle line numbers
+```xml
+   5   <description>The beginner_tutorials package</description>
+```
+Change the description to anything you like, but by convention the first sentence should be short while covering the scope of the package. If it is hard to describe the package in a single sentence then it might need to be broken up.
+
+
+### maintainer tags
+
+
+Next comes the maintainer tag:
+
+```xml
+   7   <!-- One maintainer tag required, multiple allowed, one person per tag -->
+   8   <!-- Example:  -->
+   9   <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
+  10   <maintainer email="user@todo.todo">user</maintainer>
+```
+
+This is a required and important tag for the package.xml because it lets others know who to contact about the package. At least one maintainer is required, but you can have many if you like. The name of the maintainer goes into the body of the tag, but there is also an email attribute that should be filled out:
+
+```xml
+   7   <maintainer email="you@yourdomain.tld">Your Name</maintainer>
+```
+
+### license tags
+
+
+Next is the license tag, which is also required:
+
+```xml
+  12   <!-- One license tag required, multiple allowed, one license per tag -->
+  13   <!-- Commonly used license strings: -->
+  14   <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
+  15   <license>TODO</license>
+```
+You should choose a license and fill it in here. Some common open source licenses are BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, and LGPLv3. You can read about several of these at the Open Source Initiative. For this tutorial we'll use the BSD license because the rest of the core ROS components use it already:
+
+```xml
+   8   <license>BSD</license>
+```
+
+### dependencies tags
+
+
+The next set of tags describe the dependencies of your package. The dependencies are split into `build_depend`, `buildtool_depend`, `run_depend`, `test_depend`. For a more detailed explanation of these tags see the documentation about Catkin Dependencies. Since we passed `std_msgs`, `roscpp`, and `rospy` as arguments to `catkin_create_pkg`, the dependencies will look like this:
+
+```xml
+  27   <!-- The *_depend tags are used to specify dependencies -->
+  28   <!-- Dependencies can be catkin packages or system dependencies -->
+  29   <!-- Examples: -->
+  30   <!-- Use build_depend for packages you need at compile time: -->
+  31   <!--   <build_depend>genmsg</build_depend> -->
+  32   <!-- Use buildtool_depend for build tool packages: -->
+  33   <!--   <buildtool_depend>catkin</buildtool_depend> -->
+  34   <!-- Use run_depend for packages you need at runtime: -->
+  35   <!--   <run_depend>python-yaml</run_depend> -->
+  36   <!-- Use test_depend for packages you need only for testing: -->
+  37   <!--   <test_depend>gtest</test_depend> -->
+  38   <buildtool_depend>catkin</buildtool_depend>
+  39   <build_depend>roscpp</build_depend>
+  40   <build_depend>rospy</build_depend>
+  41   <build_depend>std_msgs</build_depend>
+```
+All of our listed dependencies have been added as a `build_depend` for us, in addition to the default `buildtool_depend` on catkin. In this case we want all of our specified dependencies to be available at build and run time, so we'll add a run_depend tag for each of them as well:
+
+```xml
+  12   <buildtool_depend>catkin</buildtool_depend>
+  13
+  14   <build_depend>roscpp</build_depend>
+  15   <build_depend>rospy</build_depend>
+  16   <build_depend>std_msgs</build_depend>
+  17
+  18   <run_depend>roscpp</run_depend>
+  19   <run_depend>rospy</run_depend>
+  20   <run_depend>std_msgs</run_depend>
+```
+
+### Final package.xml
+
+
+As you can see the final `package.xml`, without comments and unused tags, is much more concise:
+
+```xml
+   1 <?xml version="1.0"?>
+   2 <package>
+   3   <name>beginner_tutorials</name>
+   4   <version>0.1.0</version>
+   5   <description>The beginner_tutorials package</description>
+   6
+   7   <maintainer email="you@yourdomain.tld">Your Name</maintainer>
+   8   <license>BSD</license>
+   9   <url type="website">http://wiki.ros.org/beginner_tutorials</url>
+  10   <author email="you@yourdomain.tld">Jane Doe</author>
+  11
+  12   <buildtool_depend>catkin</buildtool_depend>
+  13
+  14   <build_depend>roscpp</build_depend>
+  15   <build_depend>rospy</build_depend>
+  16   <build_depend>std_msgs</build_depend>
+  17
+  18   <run_depend>roscpp</run_depend>
+  19   <run_depend>rospy</run_depend>
+  20   <run_depend>std_msgs</run_depend>
+  21
+  22 </package>
+```
+
+
+## Customizing the CMakeLists.txt
+
+
+
+Now that the `package.xml`, which contains meta information, has been tailored to your package, you are ready to move on in the tutorials. The CMakeLists.txt file created by `catkin_create_pkg` will be covered in the later tutorials about building ROS code.
+
+Now that you've made a new ROS package, let's build our ROS package.

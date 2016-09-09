@@ -1,0 +1,48 @@
+# Navigating the ROS Filesystem
+***
+Description: This tutorial introduces ROS filesystem concepts, and covers using the roscd, rosls, and rospack commandline tools
+## 前提
+安装
+```bash
+$ sudo apt-get install ros-<distro>-ros-tutorial
+$ sudo apt-get install ros-indigo-ros-tutorial
+```
+## 概览
+Packages: Packages are the software organization unit of ROS code. Each package can contain libraries, executables, scripts, or other artifacts.
+
+Manifest (`package.xml`): A manifest is a description of a package. Its serves to define dependencies between packages and to capture meta information about the package like version, maintainer, license, etc... 
+
+## 文件系统工具
+```bash
+rospack allows you to get information about packages. 
+$ rospack find [package_name]
+```
+e.g.
+```bash
+$ rospack find roscpp.
+```
+返回 该包的绝对路径（？） 
+```bash
+YOUR_INSTALL_PATH/share/roscpp
+/opt/ros/indigo/share/roscpp
+```
+`roscd` 与`cd`相近 切换工作空间到包
+```bash
+$ roscd [locationname[/subdir]]
+$ roscd roscpp
+```
+注意： `ros`工具只在环境变量 `$ROS_PACKAGE_PATH` 中寻找包
+
+
+`roscd log` --- ros的log文件路径
+
+`rosls` 与 ls 相近
+
+`coscd` 包含 Tab 补全功能
+
+## 小结
+* rospack = ros + pack(age)
+* roscd = ros + cd
+* rosls = ros + ls 
+
+

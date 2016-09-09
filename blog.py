@@ -174,7 +174,9 @@ def main(containerName,imageName):
         main(containerName,imageName)
 
 def rebuild_blog(containerName):
-    cli.exec_start
+    id = cli.exec_create(containerName,'/bin/bash /src/build.sh')
+    cli.exec_start(id)
+
 if __name__ == '__main__':
 
     imageName = "lmcallme/gitblog"
@@ -199,4 +201,4 @@ if __name__ == '__main__':
     elif args.start:
         start(containerName)
     else:
-        main()
+        main(containerName,imageName)
