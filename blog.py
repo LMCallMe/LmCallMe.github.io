@@ -159,6 +159,22 @@ def start(containerName):
         logging.error("You must be create the container %s before start it" % containerName)
     start_container(containerName)
 
+def main(containerName,imageName):
+    "default doing"
+    if container_is_running(containerName):
+        rebuild_blog(containerName)
+    else:
+        if exists_container(containerName):
+            start(containerName)
+        else:
+            if exists_image(imageName):
+                create_container(containerName,imageName)
+            else:
+                build(imageName)
+        main(containerName,imageName)
+
+def rebuild_blog(containerName):
+    cli.exec_start
 if __name__ == '__main__':
 
     imageName = "lmcallme/gitblog"
@@ -170,7 +186,9 @@ if __name__ == '__main__':
     parser.add_argument('-b', '--build',action="store_true",
                         help='build docker image: %s' % imageName)
     parser.add_argument('-c', '--create',action="store_true",
-                        help='default run docker container: %s' % containerName)
+                        help='create docker container: %s' % containerName)
+    parser.add_argument('-s', '--start',action="store_true",
+                        help='start docker container: %s' % containerName)
 
     args = parser.parse_args()
 
@@ -178,5 +196,7 @@ if __name__ == '__main__':
         build(imageName)
     elif args.create:
         create(containerName,imageName)
-    else:
+    elif args.start:
         start(containerName)
+    else:
+        main()
