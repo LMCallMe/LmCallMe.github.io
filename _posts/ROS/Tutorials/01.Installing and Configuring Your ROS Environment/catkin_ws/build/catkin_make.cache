@@ -1,0 +1,2 @@
+
+-DCATKIN_DEVEL_PREFIX=/home/lm/桌面/ROS/Tutorials/Installing and Configuring Your ROS Environment/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/lm/桌面/ROS/Tutorials/Installing and Configuring Your ROS Environment/catkin_ws/install -G Unix Makefiles
