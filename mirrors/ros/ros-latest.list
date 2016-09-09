@@ -1,0 +1,2 @@
+# deb http://packages.ros.org/ros/ubuntu trusty main
+deb http://mirrors.ustc.edu.cn/ros/ubuntu trusty main
