@@ -1,3 +1,10 @@
+---
+title: 安装 OpenCV
+layout: post
+categories: OpenCV
+tag: [OpenCV,Cmake,Linux]
+---
+
 # 安装
 从[链接](https://github.com/jayrambhia/Install-OpenCV)选择合适的脚本文件
 

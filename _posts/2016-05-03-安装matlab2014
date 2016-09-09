@@ -1,0 +1,33 @@
+---
+title: Linux 安装matlab2014
+layout: post
+categorie: Matlab
+tag: [Matlab，Linux]
+---
+# 安装matlab2014
+
+## 下载
+从http://pan.baidu.com/s/1o6qKdxo#path=%252Fmatlab 下载Matlab2014的Linux版本及破解文件
+
+下载完成后将iso文件挂载到Linux
+
+··· bash
+sudo mkdir /media/matlab
+mount -o loop [path][filename].iso /media/matlab
+cd /media/matlab
+sudo ./install
+···
+
+## 安装
+
+安装过程中使用readme.txt中的序列号
+
+
+## 破解
+
+安装完成后使用crack下的 license进行激活
+
+将crack文件夹下的 ·libmwservices.so copy· 到 ·/usr/local/MATLAB/R2014A/bin/glnxa64· 
+
+## 运行
+完成安装后，命令行下使用sudo matlab即可启动使用

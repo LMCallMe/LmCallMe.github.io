@@ -1,6 +1,8 @@
 ---
 title: Atom:创建自己的语法高亮
 layout: post
+categories: IDE
+tag: [Atom]
 ---
 
 原文链接: http://www.cnblogs.com/coding-my-life/p/4639649.html
