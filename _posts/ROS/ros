@@ -1,2 +1,0 @@
-# 一行代码完成安装
-wget https://raw.githubusercontent.com/oroca/oroca-ros-pkg/master/ros_install.sh && chmod 755 ./ros_install.sh && ./ros_install.sh catkin_ws_oroca indigo
