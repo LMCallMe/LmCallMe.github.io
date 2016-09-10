@@ -67,7 +67,8 @@ def build_image(name):
         try:
             stream_line = json.loads(line)
             line = stream_line["stream"]
-        finally:
+            logging.info(line)
+        except:
             logging.info(line)
     remove_dangling_image()
 
