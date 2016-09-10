@@ -66,8 +66,7 @@ def build_image(name):
         line = line.decode()
         try:
             stream_line = json.loads(line)
-            line = stream_line["stream"]
-            logging.info(line)
+            logging.info(stream_line["stream"])
         except:
             logging.info(line)
     remove_dangling_image()
@@ -160,23 +159,31 @@ def start(containerName):
         logging.error("You must be create the container %s before start it" % containerName)
     start_container(containerName)
 
+flags = {
+    "NeedRebuild":True    # 刚刚创建容器
+}
 def main(containerName,imageName):
     "default doing"
     if container_is_running(containerName):
-        rebuild_blog(containerName)
+        if flags["NeedRebuild"]:
+            rebuild_blog(containerName)
     else:
         if exists_container(containerName):
             start(containerName)
         else:
             if exists_image(imageName):
                 create_container(containerName,imageName)
+                flags["NeedRebuild"] = False
             else:
                 build(imageName)
         main(containerName,imageName)
 
 def rebuild_blog(containerName):
     id = cli.exec_create(containerName,'/bin/bash /src/build.sh')
-    cli.exec_start(id)
+    try:
+        cli.exec_start(id)
+    except:
+        print("maybe rebuild failure")
 
 if __name__ == '__main__':
 

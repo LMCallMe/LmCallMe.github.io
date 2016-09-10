@@ -2,9 +2,6 @@
 
 cd /src
 
-# 用淘宝源
-bundle config mirror.https://rubygems.org https://ruby.taobao.org
-
 # 更新依赖
 bundle update
 
