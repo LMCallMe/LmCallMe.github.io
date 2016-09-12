@@ -3,7 +3,7 @@
 * rosbuild 
 
 ## 用catkin构建：
-```bash
+``` bash
 $mkdir -p ~/catkin_ws/src
 $cd ~/catkin_ws/src
 $catkin_init_workspace

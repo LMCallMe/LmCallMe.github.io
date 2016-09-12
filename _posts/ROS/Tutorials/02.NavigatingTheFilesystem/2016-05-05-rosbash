@@ -1,6 +1,6 @@
 # rosbash
 要先运行
-```shell
+``` shell
 source /opt/ros/jade/setup.bash
 ```
 # 简介
@@ -26,15 +26,15 @@ source /opt/ros/jade/setup.bash
 roscd allows you to change directories using a package name, stack name, or special location.
 
 Usage:
-```shell
+``` shell
 roscd <package-or-stack>[/subdir]
 ```
 For example:
-```shell
+``` shell
 roscd roscpp
 ```
 You can continue to use a relative path after the package name to go further into the package:
-```shell
+``` shell
 roscd roscpp/include/ros
 ```
 roscd without argument will take you to `$ROS_WORKSPACE`.
@@ -42,11 +42,11 @@ roscd without argument will take you to `$ROS_WORKSPACE`.
 Additionally, the `ROS_LOCATIONS` environment variable can be used to add additional special locations for use with roscd. `ROS_LOCATIONS` is a colon-separated list of `key=path` pairs.
 
 For example, adding the following to your `.bashrc` file:
-```shell
+``` shell
 export ROS_LOCATIONS="pkgs=~/ros/pkgs:dev=~/ros/dev"
 ```
 Will then allow you to type:
-```shell
+``` shell
 $ roscd dev
 ```
 and end up in `~/ros/dev`.
@@ -56,7 +56,7 @@ and end up in `~/ros/dev`.
 `rospd` is the pushd equivalent of `roscd`. It allows you to keep multiple locations in a directory-stack while still using ros package names. You can then use the number of any directory in your directory stack to jump back there.
 
 For example:
-```shell
+``` shell
 leibs@bar:~$ rospd hokuyo_node/
 0 ~/ros/pkgs/laser_drivers/hokuyo_node
 1 ~
@@ -80,7 +80,7 @@ leibs@bar:~/ros/dev/laser_pipeline$ rospd 1
 `rosd` lists the directories in your directory stack. This is for use with `rospd`.
 
 For example:
-```shell
+``` shell
 leibs@bar:~/ros/pkgs/laser_drivers/hokuyo_node$ rosd
 0 ~/ros/pkgs/laser_drivers/hokuyo_node
 1 ~
@@ -91,20 +91,20 @@ leibs@bar:~/ros/pkgs/laser_drivers/hokuyo_node$ rosd
 `rosls` allows you to view the contents of a package, stack, or location.
 
 For example:
-```shell
+``` shell
 $ rosls roscpp
 $ rosls roscpp/include/ros
 ```
 ## rosed
 ***
 `rosed` allows you to easily edit files in a ROS package by typing the package name and the name of the file you want to edit:
-```shell
+``` shell
 $ rosed roscpp_tutorials add_two_ints_server.cpp
 ```
 Note: you can specify ANY file in a package, including those further down within the file hierarchy. If you specify an ambiguous file you will be prompted to select one.
 
 For example:
-```shell
+``` shell
 $ rosed roscpp CMakeLists.txt
 You have chosen a non-unique filename, please pick one of the following:
 1) ~/ros/ros/core/roscpp/test/CMakeLists.txt
@@ -114,7 +114,7 @@ You have chosen a non-unique filename, please pick one of the following:
 ```
 
 The default editor for rosed is `vim`. To use a different editor, set the `EDITOR` environment variable. E.g., in your `~/.bashrc`:
-```shell
+``` shell
 export EDITOR='emacs -nw'
 ```
 This example makes emacs the default editor.
@@ -128,7 +128,7 @@ You also can change the editor for one rosed call on the fly:
 `roscp` allows you to conveniently copy a file from a package. Similar to rosed you can specify any file in the package regardless of hierarchy.
 
 For example:
-```shell
+``` shell
 $ roscp roscpp_tutorials talker.cpp .
 ```
 Will end up copying the file from `~/ros/pkgs/ros_tutorials/roscpp_tutorials/talker/talker.cpp`
@@ -138,25 +138,25 @@ Will end up copying the file from `~/ros/pkgs/ros_tutorials/roscpp_tutorials/tal
 rosrun allows you to run an executable in an arbitrary package from anywhere without having to give its full path or `cd`/`roscd` there first.
 
 Usage:
-```shell
+``` shell
 rosrun <package> <executable>
 ```
 Example:
-```shell
+``` shell
 rosrun roscpp_tutorials talker
 ```
 It's also possible to pass a `~`parameter using the following syntax (replace the `~` with an `_`):
-```shell
+``` shell
 rosrun package node _parameter:=value
 ```
 Example:
-```shell
+``` shell
 rosrun my_package my_node _my_param:=value
 ```
 Starting in Indigo, rosrun has a `--prefix` option which can be used to run a node in `gdb` or `valgrind`.
 
 Example:
-```shell
+``` shell
 rosrun --prefix 'gdb -ex run --args' my_package my_node
 ```
 For more example prefixes, see: Roslaunch Nodes in Valgrind or GDB

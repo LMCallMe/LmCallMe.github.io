@@ -51,7 +51,7 @@ This will create a `beginner_tutorials` folder which contains a `package.xml` an
 
 Now you need to build the packages in the catkin workspace:
 
-```bash
+``` bash
 $ cd ~/catkin_ws
 $ catkin_make
 ```
@@ -60,21 +60,21 @@ After the workspace has been built it has created a similar structure in the dev
 
 To add the workspace to your ROS environment you need to source the generated setup file:
 
-```bash
+``` bash
 $ . ~/catkin_ws/devel/setup.bash
 ```
 
 # package dependencies 包依赖
 
 直接依赖：
-```bash
+``` bash
 $ rospack depends1 beginner_tutorials # 输出如下
 std_msgs
 rospy
 roscpp
 ```
 间接依赖：
-```bash
+``` bash
 $ rospack depends beginner_tutorials # 输出如下
 cpp_common
 rostime
@@ -107,7 +107,7 @@ rospy
 First update the description tag:
 
 Toggle line numbers
-```xml
+``` xml
    5   <description>The beginner_tutorials package</description>
 ```
 Change the description to anything you like, but by convention the first sentence should be short while covering the scope of the package. If it is hard to describe the package in a single sentence then it might need to be broken up.
@@ -118,7 +118,7 @@ Change the description to anything you like, but by convention the first sentenc
 
 Next comes the maintainer tag:
 
-```xml
+``` xml
    7   <!-- One maintainer tag required, multiple allowed, one person per tag -->
    8   <!-- Example:  -->
    9   <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
@@ -127,7 +127,7 @@ Next comes the maintainer tag:
 
 This is a required and important tag for the package.xml because it lets others know who to contact about the package. At least one maintainer is required, but you can have many if you like. The name of the maintainer goes into the body of the tag, but there is also an email attribute that should be filled out:
 
-```xml
+``` xml
    7   <maintainer email="you@yourdomain.tld">Your Name</maintainer>
 ```
 
@@ -136,7 +136,7 @@ This is a required and important tag for the package.xml because it lets others 
 
 Next is the license tag, which is also required:
 
-```xml
+``` xml
   12   <!-- One license tag required, multiple allowed, one license per tag -->
   13   <!-- Commonly used license strings: -->
   14   <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
@@ -144,7 +144,7 @@ Next is the license tag, which is also required:
 ```
 You should choose a license and fill it in here. Some common open source licenses are BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, and LGPLv3. You can read about several of these at the Open Source Initiative. For this tutorial we'll use the BSD license because the rest of the core ROS components use it already:
 
-```xml
+``` xml
    8   <license>BSD</license>
 ```
 
@@ -153,7 +153,7 @@ You should choose a license and fill it in here. Some common open source license
 
 The next set of tags describe the dependencies of your package. The dependencies are split into `build_depend`, `buildtool_depend`, `run_depend`, `test_depend`. For a more detailed explanation of these tags see the documentation about Catkin Dependencies. Since we passed `std_msgs`, `roscpp`, and `rospy` as arguments to `catkin_create_pkg`, the dependencies will look like this:
 
-```xml
+``` xml
   27   <!-- The *_depend tags are used to specify dependencies -->
   28   <!-- Dependencies can be catkin packages or system dependencies -->
   29   <!-- Examples: -->
@@ -172,7 +172,7 @@ The next set of tags describe the dependencies of your package. The dependencies
 ```
 All of our listed dependencies have been added as a `build_depend` for us, in addition to the default `buildtool_depend` on catkin. In this case we want all of our specified dependencies to be available at build and run time, so we'll add a run_depend tag for each of them as well:
 
-```xml
+``` xml
   12   <buildtool_depend>catkin</buildtool_depend>
   13
   14   <build_depend>roscpp</build_depend>
@@ -189,7 +189,7 @@ All of our listed dependencies have been added as a `build_depend` for us, in ad
 
 As you can see the final `package.xml`, without comments and unused tags, is much more concise:
 
-```xml
+``` xml
    1 <?xml version="1.0"?>
    2 <package>
    3   <name>beginner_tutorials</name>

@@ -11,12 +11,12 @@ tag: [Matlab，Linux]
 
 下载完成后将iso文件挂载到Linux
 
-··· bash
+``` bash
 sudo mkdir /media/matlab
 mount -o loop [path][filename].iso /media/matlab
 cd /media/matlab
 sudo ./install
-···
+```
 
 ## 安装
 

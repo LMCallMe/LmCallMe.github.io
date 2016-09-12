@@ -9,7 +9,7 @@ tag: [OpenCV,Cmake,Linux]
 从[链接](https://github.com/jayrambhia/Install-OpenCV)选择合适的脚本文件
 
 # 在命令行下
-```bash
+``` bash
 $ chmod +x opencv.sh
 $ ./opencv.sh
 ```
@@ -18,7 +18,7 @@ $ ./opencv.sh
 
 ## Python
 
-```python
+``` python
 #!usr/bin/env python
 #filename.py
 from cv2.cv import *
@@ -28,13 +28,13 @@ ShowImage("opencv",img)
 WaitKey(0)
 ```
 运行：
-```bash
+``` bash
 $ python filename.py
 ```
 
 ## C
 opencvtest.c
-```C
+``` C
 #include
 #include<opencv2/highgui/highgui.hpp>
 
@@ -49,14 +49,14 @@ int main()
 }
 ```
 编译运行：
-```bash
+``` bash
 $ gcc -ggdb `pkg-config --cflags opencv` -o `basename opencvtest.c .c` opencvtest.c `pkg-config --libs opencv`
 $ ./opencvtest
 ```
 
 ## C++
 opencvtest.cpp
-```C++
+``` C++
 #include<opencv2/highgui/highgui.hpp>
 using namespace cv;
 
@@ -71,7 +71,7 @@ int main()
 }
 ```
 编译运行
-```bash
+``` bash
 $ g++ -ggdb `pkg-config --cflags opencv` -o `basename opencvtest.cpp .cpp` opencvtest.cpp `pkg-config --libs opencv`
 $ ./opencvtest
 ```
@@ -79,7 +79,7 @@ $ ./opencvtest
 # 简化编译使用opencv的程序
 bash 脚本 `~/.compile_opencv.sh`
 
-```bash
+``` bash
 #!/bin/bash
 echo "compiling $1"
 if [[ $1 == *.c ]]
@@ -96,13 +96,13 @@ echo "Output file => ${1%.*}"
 
 添加命令别名：
 
-```bash
+``` bash
 $ alias opencv="~/.compile_opencv.sh"
 ```
 
 使用该脚本
 
-```bash
+``` bash
 $ opencv opencvtest.c
 $ ./opencvtest
 ```

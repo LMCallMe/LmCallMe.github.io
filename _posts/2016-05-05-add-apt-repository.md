@@ -6,23 +6,23 @@ tag: [Ubuntu,Liunx,apt-get]
 ---
 
 # 安装
-```bash
+``` bash
 $ sudo apt-get install python-software-properties
 ```
 
 # 更新
-```bash
+``` bash
 sudo apt-get update
 ```
 
 # 使用
-```bash
+``` bash
 sudo add-apt-repository "deb http://archive.canonical.com/ubuntu maverick partner"
 ```
 
 # 帮助
 
-··· bash
+``` bash
 add-apt-repository --help
 Usage: add-apt-repository \<sourceline\>
 
@@ -57,19 +57,19 @@ If `--remove` is given the tool will remove the given sourceline from your
   默认：`hkp://keyserver.ubuntu.com:80/`
   - **-s**, --enable-source   允许从仓库下载源码包
   - **-y**, --yes             对所有问题都设定回答为是
-···
+```
   
   
 # 老办法
 
-··· bash
+``` bash
 cp /etc/apt/sources.list /etc/apt/sources.list.bak
 vim /etc/apt/sources.list
-···
+```
 
 添加以下的源：
 
-··· bash
+``` bash
 # 中科大：
 deb http://mirrors.ustc.edu.cn/ubuntu/ precise-updates main restricted
 deb-src http://mirrors.ustc.edu.cn/ubuntu/ precise-updates main restricted

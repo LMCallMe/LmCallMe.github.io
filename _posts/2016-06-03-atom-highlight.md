@@ -13,7 +13,7 @@ atom linux 的配置目录在 ~/.atom 下，
 所有在这里的包在启动时都会自动加载。
 因此，我们直接在这里创建一个包。
 
-```bash
+``` bash
 cd .atom/packages
 mkdir language-protobuf
 cd language-protobuf
@@ -22,7 +22,7 @@ cd language-protobuf
 atom 的 packages 都是有特定的目录结构和文件的。 
 首先，要有一个 package.json 来描述你的包，在 language-protobuf 目录下创建它。
 
-```json
+``` json
 {
   "name": "language-proto",
   "version": "0.2.0",
@@ -43,14 +43,14 @@ atom 的 packages 都是有特定的目录结构和文件的。
 现在已经创建了一个空包。要实现语法高亮，就要有一些语法规则来指定如何高亮。
 下面开始创建语法规则。
 
-```bash
+``` bash
 mkdir grammars
 cd grammars
 ```
 
 然后在 grammars 目录下创建语法规则文件 protobuf.cson (atom的配置文件用cson来保存的)
 
-```json
+``` json
 'scopeName': 'source.protobuf'
 'name': 'protobuf'
 'fileTypes': ['proto']
@@ -75,7 +75,7 @@ atom通常会把它显示在状态栏右下角。
 fileTypes是文件后缀。atom打开时会根据文件后缀来判断采用哪一种语法高亮。
 多个文件后缀按行分开即可。如
 
-```json
+``` json
 'fileTypes': [
 'h'
 'hpp'
@@ -102,7 +102,7 @@ ui是界面(像标签、状态栏...)相关的，与语法无关。
 语法主题则是控制代码高亮的，在设置中指定。
 我使用的是Monokai主题，分析这个主题可以发现它里面有一个index.less文件(https://github.com/burntime/atom-monokai/blob/master/index.less)。里面指定了大部分结构的高亮规则。比如：
 
-```bash
+``` bash
 .comment {
   color: #75715E;
 }
@@ -125,7 +125,7 @@ ui是界面(像标签、状态栏...)相关的，与语法无关。
 
 来龙去脉了解了，下面我们来添加更多的规则。
 
-```josn
+``` josn
 {
     'match': '\\b(message|enum|service)\\b'
     'name': 'storage.type.custom.protobuf'
@@ -167,7 +167,7 @@ captures 表示要匹配的多个规则。
 
 接着继承添加其他规则:
 
-```josn
+``` josn
 {
     'begin': '"'
     'beginCaptures':
@@ -211,7 +211,7 @@ atom是github开发的，它的包要在github上
 因此当前开始的包要在github上创建一个源，测试好，把最新的代码提交。
 然后从cmd进入到包的根目录，利用atom自带的apm进行发布。
 
-```bash
+``` bash
 apm publish minor
 ```
 
