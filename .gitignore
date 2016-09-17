@@ -17,3 +17,6 @@ Thumbs.db
 .jekyll-metadata
 
 *.log
+
+# vim 临时文件
+*.swp
