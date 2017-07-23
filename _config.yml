@@ -83,7 +83,7 @@ JB :
   #
   comments :
     provider : disqus
-    disqus :
+    disqus : lmcallme
       short_name : jekyllbootstrap
     livefyre :
       site_id : 123

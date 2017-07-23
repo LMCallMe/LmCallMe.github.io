@@ -1,12 +1,12 @@
 ---
 layout: page
-title: LMCallme
+title: Lmcallme 的 Blog
 tagline: None
 ---
 
 {% include JB/setup %}
 
-## Posts
+## 帖子 
 
 <ul class="posts">
   {% for post in site.posts %}
